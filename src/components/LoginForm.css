@@ -1,0 +1,40 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  padding: 3em;
+}
+
+.email-input,
+.password-input {
+  border: 0;
+  font-size: 1.5em;
+  background-color: transparent;
+  border-bottom: 2px solid;
+}
+
+.login-button {
+  width: fit-content;
+  padding: 1em 2em;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  background-color: rgb(247, 196, 40);
+}
+
+.forgot-password,
+.create-account {
+  color: rgba(11, 11, 11, 0.65);
+  transition: all 0.1s;
+}
+
+.forgot-password:hover,
+.create-account:hover {
+  color: rgb(247, 196, 40);
+  cursor: pointer;
+}
