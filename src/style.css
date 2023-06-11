@@ -1,16 +1,4 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* FOOTER */
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-
-  background-color: rgb(247, 196, 40);
+  padding: 0;
 }

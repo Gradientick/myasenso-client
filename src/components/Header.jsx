@@ -3,7 +3,7 @@ import "./Header.css";
 function Header() {
   return (
     <div>
-      <h1 className="page-title">MyAsenso</h1>
+      <h1 className="page-title ">MyAsenso</h1>
     </div>
   );
 }
