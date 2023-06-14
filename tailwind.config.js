@@ -7,6 +7,7 @@ export default {
         primary: "rgb(247, 196, 40);",
         secondary: "#00DFA2",
         blue: "#0079FF",
+        green: "#a3e635",
       },
     },
   },

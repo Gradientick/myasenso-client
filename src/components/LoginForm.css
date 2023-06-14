@@ -3,7 +3,8 @@ form {
   flex-direction: column;
   justify-content: space-evenly;
   height: 100%;
-  padding: 3em;
+  padding: 2em;
+  background-color: teak;
 }
 
 .email-input,
@@ -15,11 +16,12 @@ form {
 }
 
 .login-button {
-  width: fit-content;
+  width: 7em;
   padding: 1em 2em;
   font-size: 1em;
   border-radius: 5px;
   transition: all 0.3s;
+  background-color: rgb(255, 216, 99);
 }
 
 .login-button:hover {

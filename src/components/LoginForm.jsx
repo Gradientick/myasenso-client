@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
 import "./LoginForm.css";
-import RegisterForm from "./RegisterForm";
-function LoginForm() {
+
+function LoginForm({ onFormSwitch }) {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input type="text" className="email-input" placeholder="Email" />
       <input
         type="password"
@@ -12,8 +17,10 @@ function LoginForm() {
         placeholder="Password"
       />
       <button className="login-button">Login</button>
-      <p className="forgot-password">Forgot password?</p>
-      <p className="create-account">Don't have an account? create one</p>
+      {/* <p className="forgot-password">Forgot password?</p> */}
+      <p className="create-account" onClick={() => onFormSwitch("register")}>
+        Don't have an account? create one
+      </p>
     </form>
   );
 }
