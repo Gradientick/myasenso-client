@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddItemModal from "./AddItemModal";
-function InventoryHeading() {
+function InventoryHeading(items, setItems) {
   const [showModal, setShowModal] = useState(false);
 
   const handleOnClose = () => setShowModal(false);

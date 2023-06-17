@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../components/Header";
 import Dashboard from "../components/Dashboard";
+import NavBar from "../components/NavBar";
 
 function FeedbackPage() {
   return (
     <div>
-      <Header />
+      <NavBar />
       <Dashboard textContent={"Customer Feedbacks"} />
     </div>
   );

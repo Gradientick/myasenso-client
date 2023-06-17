@@ -4,15 +4,33 @@ function RegisterForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
   return (
     <form>
-      <input type="text" className="email-input" placeholder="Name" />
-      <input type="text" className="email-input" placeholder="Email" />
+      <input
+        type="text"
+        className="email-input"
+        placeholder="Full Name"
+        onChange={setName}
+      />
+      <input
+        type="text"
+        className="email-input"
+        placeholder="Email"
+        onChange={setEmail}
+      />
+      <input
+        type="number"
+        className="email-input"
+        placeholder="phone number"
+        onChange={setNumber}
+      />
 
       <input
         type="password"
         className="password-input"
         placeholder="Password"
+        onChange={setPass}
       />
       <button className="login-button">Create Account</button>
       {/* <p className="forgot-password">Forgot password?</p> */}
