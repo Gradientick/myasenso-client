@@ -1,9 +1,10 @@
 import React from "react";
 import "./Header.css";
+import logo from '../assets/MyAsenso.png'
 function Header() {
   return (
     <div>
-      <h1 className="page-title ">MyAsenso</h1>
+      <img src={logo} alt="logo" className="page-title"/>
     </div>
   );
 }

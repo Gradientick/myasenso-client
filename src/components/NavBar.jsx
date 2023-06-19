@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/MyAsenso.png'
 
 function NavBar() {
   return (
-    <div className="h-14 flex justify-between items-center p-4 ">
-      <Link className="text-4xl " to="/dashboard">
-        MyAsenso
+    <div className="h-20 flex justify-between items-center p-4 ">
+      <Link to="/dashboard">
+        <h1 className="page-title-txt">MY<span>ASENSO</span></h1>
       </Link>
       <div className="flex items-center gap-8">
         <Link className=" hover:text-sky-700 cursor-pointer " to="/feedbacks">
