@@ -1,36 +1,52 @@
 import React, { useState } from "react";
+import registerService from "../services/registerService";
 import "./LoginForm.css";
 function RegisterForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  // const handleRegister = (e) => {
+  //   e.preventDefault();
+
+  //   registerService
+  //     .register({ name, email, number, password })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
   return (
-    <form>
+    <form onSubmit={handleRegister}>
       <input
         type="text"
         className="email-input"
         placeholder="Full Name"
-        onChange={setName}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <input
         type="text"
         className="email-input"
         placeholder="Email"
-        onChange={setEmail}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="number"
         className="email-input"
         placeholder="phone number"
-        onChange={setNumber}
+        value={number}
+        onChange={(e) => setNumber(e.target.value)}
       />
 
       <input
         type="password"
         className="password-input"
         placeholder="Password"
-        onChange={setPass}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <button className="login-button">Create Account</button>
       {/* <p className="forgot-password">Forgot password?</p> */}
