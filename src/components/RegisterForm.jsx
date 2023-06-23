@@ -1,24 +1,26 @@
 import { useState } from "react";
 import registerService from "../services/registerService";
-import { useNavigate } from "react-router-dom";
+
 import "./LoginForm.css";
 function RegisterForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+
   const handleRegister = (e) => {
     e.preventDefault();
     registerService
-      .register({ email, password, name, number })
+      .register({ email, password, name, number, title })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    onFormSwitch("login");
-    setEmail("");
-    setPassword("");
-    setName("");
-    setNumber("");
+    // onFormSwitch("login");
+    // setEmail("");
+    // setPassword("");
+    // setName("");
+    // setNumber("");
+    // setTitle("");
   };
 
   return (
@@ -43,6 +45,14 @@ function RegisterForm({ onFormSwitch }) {
         placeholder="phone number"
         value={number}
         onChange={(e) => setNumber(e.target.value)}
+      />
+
+      <input
+        type="text"
+        className="email-input"
+        placeholder="Business Name"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
 
       <input
