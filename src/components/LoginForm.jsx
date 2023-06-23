@@ -1,29 +1,46 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import loginService from "../services/loginService";
 import "./LoginForm.css";
-import { data } from "autoprefixer";
+import itemService from "../services/itemService";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
+
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      itemService.setToken(user.token);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user?.token) navigate("/dashboard");
+  }, [user, navigate]);
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     loginService
       .login({ email, password })
       .then((res) => {
+        window.localStorage.setItem("loggedUser", JSON.stringify(res));
+        itemService.setToken(res.token);
         setUser(res);
-        setEmail("");
         setPassword("");
       })
       .catch((error) => console.log(error));
-
-    // const response = await loginService.login({ email, password };
   };
+
+  // const response = await loginService.login({ email, password };
+
   return (
     <form onSubmit={handleLogin}>
+      {/* {user === null ?  : (to="/dashboard")} */}
       <input
         type="text"
         className="email-input"
@@ -40,8 +57,11 @@ function LoginForm({ onFormSwitch }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-button">Login</button>
-      {/* <p className="forgot-password">Forgot password?</p> */}
+
+      <button className="login-button" onClick={handleLogin}>
+        Login
+      </button>
+
       <p className="create-account" onClick={() => onFormSwitch("register")}>
         Don't have an account? create one
       </p>

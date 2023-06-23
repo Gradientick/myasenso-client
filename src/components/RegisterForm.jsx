@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import registerService from "../services/registerService";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 function RegisterForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const navigate = useNavigate();
+  const handleRegister = (e) => {
+    e.preventDefault();
+    registerService
+      .register({ email, password, name, number })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    onFormSwitch("login");
+    setEmail("");
+    setPassword("");
+    setName("");
+    setNumber("");
+  };
 
-  // const handleRegister = (e) => {
-  //   e.preventDefault();
-
-  //   registerService
-  //     .register({ name, email, number, password })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
   return (
     <form onSubmit={handleRegister}>
       <input
@@ -48,7 +52,9 @@ function RegisterForm({ onFormSwitch }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-button">Create Account</button>
+      <button className="login-button" type="submit" onClick={handleRegister}>
+        Create Account
+      </button>
       {/* <p className="forgot-password">Forgot password?</p> */}
       <p className="create-account" onClick={() => onFormSwitch("login")}>
         Already have an account? Click here to login
