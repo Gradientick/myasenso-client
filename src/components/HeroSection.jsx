@@ -1,26 +1,16 @@
 import React, { useState } from "react";
-import "./HeroSection.css";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
-function HeroSection() {
-  const [currentForm, setCurrentForm] = useState(`login`);
+import "../css/HeroSection.css";
+import logo from '../assets/MyAsenso.png'
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
+function HeroSection() {
   return (
     <div>
       <div className="header">
         <div className="header-container">
           <div className="welcome-text">
-            <h2>Hi, Welcome to MyAsenso!</h2>
-          </div>
-          <div className="login-form-container">
-            {currentForm === "login" ? (
-              <LoginForm onFormSwitch={toggleForm} />
-            ) : (
-              <RegisterForm onFormSwitch={toggleForm} />
-            )}
+            <img src={logo} alt="logo" className="page-logo"/>
+            <h2>Take the hassle out of management in your business.</h2>
+            <p><span>MyAsenso</span> is the Internet's business inventory and manager, used by hundreds of business owners, entrepreneur, and content creators.</p>
           </div>
         </div>
       </div>

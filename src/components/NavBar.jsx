@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/MyAsenso.png";
 import { useNavigate } from "react-router-dom";
 
-function NavBar() {
+export default function NavBar() {
   const navigate = useNavigate();
   const handleLogout = () => {
     window.localStorage.clear();
     navigate("/");
   };
   return (
-    <div className="h-20 flex justify-between items-center p-4 ">
-      <Link to="/dashboard">
+    <div className="navbar justify-between items-center p-4 ">
+      <Link to="/">
         <h1 className="page-title-txt">
           MY<span>ASENSO</span>
         </h1>
       </Link>
       <div className="flex items-center gap-8">
+        <Link className=" hover:text-sky-700 cursor-pointer " to="/dashboard">
+          Dashboard
+        </Link>
         <Link className=" hover:text-sky-700 cursor-pointer " to="/feedbacks">
           Feedback
         </Link>
@@ -30,5 +32,3 @@ function NavBar() {
     </div>
   );
 }
-
-export default NavBar;

@@ -1,12 +1,9 @@
 import { useState, useContext } from "react";
 import itemService from "../services/itemService";
 // import ItemContext from "../features/ItemContext";
-function AddItemForm() {
+function AddItemForm({ image , name , price , quantity , setImage , setName ,setPrice , setQuantity}) {
   // const { items, setItems } = useContext(ItemContext);
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
+
 
   const addItem = (e) => {
     e.preventDefault();
@@ -17,41 +14,41 @@ function AddItemForm() {
       })
       .catch((error) => console.log(error));
 
-    // const newItemData = new FormData();
-    // newItemData.append("image", image);
-    // newItemData.append("name", name);
-    // newItemData.append("price", price);
-    // newItemData.append("quantity", quantity);
+    const newItemData = new FormData();
+    newItemData.append("image", image);
+    newItemData.append("name", name);
+    newItemData.append("price", price);
+    newItemData.append("quantity", quantity);
 
-    // itemService
-    //   .createItem(newItemData)
-    //   .then((res) => {
-    //     console.log("response:", res.data);
-    //   })
-    //   .catch((error) => console.log(error))
-    //   .finally(() => {
-    //     setImage("");
-    //     setName("");
-    //     setPrice("");
-    //     setQuantity("");
-    //     onclose();
-    //   });
+    itemService
+      .createItem(newItemData)
+      .then((res) => {
+        console.log("response:", res.data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setImage("");
+        setName("");
+        setPrice("");
+        setQuantity("");
+        onclose();
+      });
   };
   return (
-    <form className="flex justify-evenly " onSubmit={addItem}>
-      <label>Item Image</label>
+    <form className="flex justify-evenly modal" onSubmit={addItem}>
+      <label htmlFor="file">Item Image:</label>
       <input
         type="file"
         value={image}
         onChange={(e) => setImage(e.target.value)}
       />
-      <label>Item Name:</label>
+      <label htmlFor="text">Item Name:</label>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label>Price:</label>
+      <label htmlFor="number">Price:</label>
       <input
         type="number"
         value={price}

@@ -10,6 +10,7 @@ export default {
         green: "#a3e635",
         darkgreen: "#E8F6EF",
         red: "#E76161",
+        lightgrey: 'rgb(236, 238, 240)'
       },
     },
   },

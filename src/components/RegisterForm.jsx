@@ -1,7 +1,7 @@
 import { useState } from "react";
 import registerService from "../services/registerService";
 
-import "./LoginForm.css";
+import "../css/LoginForm.css";
 function RegisterForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +25,8 @@ function RegisterForm({ onFormSwitch }) {
 
   return (
     <form onSubmit={handleRegister}>
+      <h3>Get Started with Font Awesome</h3>
+      <p>The easiest way to manage your business. It's your very own inventory dashboard, all bundled up in one site.</p>
       <input
         type="text"
         className="email-input"
@@ -66,8 +68,8 @@ function RegisterForm({ onFormSwitch }) {
         Create Account
       </button>
       {/* <p className="forgot-password">Forgot password?</p> */}
-      <p className="create-account" onClick={() => onFormSwitch("login")}>
-        Already have an account? Click here to login
+      <p>
+        Already have an account? <span className="create-account" onClick={() => onFormSwitch("login")}>Sign in</span>
       </p>
     </form>
   );

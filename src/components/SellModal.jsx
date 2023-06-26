@@ -1,13 +1,13 @@
 import React from "react";
-import AddItemForm from "./AddItemForm";
+import SellForm from "./SellForm";
 
-export default function AddItemModal({ visible, onClose , image , name , price , quantity , setImage , setName ,setPrice , setQuantity}) {
+function SellModal({ visible, onClose ,  image , name , price , quantity , setQuantity}) {
   if (!visible) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center ">
       <div className="bg-primary rounded-lg p-4 h-1/2 w-2/3 sm:w-2/3 md:w-2/3 lg:w-1/3 xl:w-1/3">
         <div className="flex justify-between">
-          <h1 className="text-center text-4xl font-black">Add Product</h1>
+          <h1 className="text-center text-4xl font-black">Sell Product</h1>
           <button
             onClick={onClose}
             type="button"
@@ -24,8 +24,10 @@ export default function AddItemModal({ visible, onClose , image , name , price ,
             </svg>
           </button>
         </div>
-        <AddItemForm onClose image={image} setImage={setImage} name={name} setName={setName} price={price} setPrice={setPrice} quantity={quantity} setQuantity={setQuantity}/>
+        <SellForm onClose image={image} name={name} price={price} quantity={quantity} setQuantity={setQuantity}/>
       </div>
     </div>
   );
 }
+
+export default SellModal;
