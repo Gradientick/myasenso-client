@@ -1,30 +1,41 @@
-const baseUrl = "http://localhost:5000/api/items";
 import axios from "axios";
+const apiClient = axios.create({
+  baseURL: "http://localhost:5000/api",
+  headers: {
+    common: {
+      "Content-Type": "application/json",
+    },
+  },
+});
 
-let token = null;
-
-const setToken = (newToken) => {
-  token = `bearer ${newToken}`;
-};
-
-function getItems() {
-  return axios.get(baseUrl).then((res) => res.data);
+function setToken(token) {
+  apiClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
-function createItem(item) {
-  const config = {
-    Headers: { Authorization: token },
-  };
-  return axios.post(baseUrl, item, config).then((res) => res.data);
+async function getItems() {
+  const response = await apiClient.get("/items");
+  return response.data;
 }
 
-function deleteItem(id) {
-  return axios.delete(`${baseUrl}/${id}`).then((res) => res.status);
+async function createItem(item) {
+  const response = await apiClient.post("/items", item);
+  return response.data;
+}
+
+async function updateItem(id, item) {
+  const response = await apiClient.put(`/items/${id}`, item);
+  return response.data;
+}
+
+async function deleteItem(id) {
+  const response = await apiClient.delete(`/items/${id}`);
+  return response.status;
 }
 
 export default {
+  setToken,
   getItems,
   createItem,
+  updateItem,
   deleteItem,
-  setToken,
 };

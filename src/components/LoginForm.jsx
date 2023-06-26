@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import loginService from "../services/loginService";
 import "./LoginForm.css";
 import itemService from "../services/itemService";
+import nameService from "../services/nameService";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginForm({ onFormSwitch }) {
@@ -30,6 +31,7 @@ function LoginForm({ onFormSwitch }) {
       .then((res) => {
         window.localStorage.setItem("loggedUser", JSON.stringify(res));
         itemService.setToken(res.token);
+        nameService.setToken(res.token);
         setUser(res);
         setPassword("");
       })
