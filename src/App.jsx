@@ -5,6 +5,7 @@ import Login from "./pages/Login.jsx";
 import DashboardPage from "./pages/DashboardPage";
 import { Routes, Route } from "react-router-dom";
 import FeedbackPage from "./pages/FeedbackPage";
+import Footer from "./components/Footer";
 
 export default function App({}) {
   return (

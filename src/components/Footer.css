@@ -1,0 +1,14 @@
+.col-md-6 {
+  background-color: rgb(255, 216, 99);
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin-top: 86rem;
+  width: 100vw;
+}
+.copyright {
+  background-color: rgb(255, 216, 99);
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
