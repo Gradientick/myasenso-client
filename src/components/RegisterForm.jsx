@@ -13,8 +13,8 @@ function RegisterForm({ onFormSwitch }) {
     e.preventDefault();
     registerService
       .register({ email, password, name, number, title })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => console.log(res));
+    onFormSwitch("login").catch((err) => console.log(err));
     // onFormSwitch("login");
     // setEmail("");
     // setPassword("");
@@ -62,14 +62,7 @@ function RegisterForm({ onFormSwitch }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button
-        className="login-button"
-        type="submit"
-        onClick={() => {
-          onFormSwitch("login");
-          handleRegister();
-        }}
-      >
+      <button className="login-button" type="submit" onClick={handleRegister}>
         Create Account
       </button>
       {/* <p className="forgot-password">Forgot password?</p> */}
