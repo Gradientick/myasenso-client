@@ -62,7 +62,14 @@ function RegisterForm({ onFormSwitch }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-button" type="submit" onClick={handleRegister}>
+      <button
+        className="login-button"
+        type="submit"
+        onClick={() => {
+          onFormSwitch("login");
+          handleRegister();
+        }}
+      >
         Create Account
       </button>
       {/* <p className="forgot-password">Forgot password?</p> */}

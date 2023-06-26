@@ -60,7 +60,7 @@ function InventoryItems() {
             key={item.id}
             className="flex-column p-3 bg-primary gap-3 rounded-lg"
           >
-            <img src={item.image} alt="" className="w-52" />
+            <img src={item.photoInfo.url} alt="" className="w-52" />
             <p className="text-lg">{item.name}</p>
             <p>Quantity: {item.quantity}</p>
             <p>₱{item.price}</p>
