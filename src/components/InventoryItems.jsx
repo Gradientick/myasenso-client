@@ -18,6 +18,14 @@ function InventoryItems({ price, setPrice }) {
       .catch((err) => console.log(err));
   }, []);
 
+  const deleteItem = (id) => {
+    itemService
+      .deleteItem(id)
+      .then((_res) => {
+        setItems(items.filter((item) => item.id !== id));
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="bg-darkgreen grid ">
       <ul className="grid grid-cols-6 gap-3 p-2">
@@ -39,7 +47,7 @@ function InventoryItems({ price, setPrice }) {
               </button>
               <button
                 className="bg-red  w-16 rounded-lg cursor-pointer"
-                onClick={() => getQuantity()}
+                onClick={() => deleteItem(item.id)}
               >
                 Remove
               </button>
