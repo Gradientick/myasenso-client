@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
+import ItemsContext from "../features/ItemsContext";
 
-function Stats({ items }) {
+function Stats() {
+  const { items } = useContext(ItemsContext);
   const [numberOfStocks, setNumberOfStocks] = useState(0);
   const [totalEarnings, setTotalEarnings] = useState(0);
   return (

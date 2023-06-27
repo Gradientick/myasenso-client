@@ -1,7 +1,7 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
 
-export default function AddItemModal({ visible, onClose, items, setItems }) {
+export default function AddItemModal({ visible, onClose }) {
   if (!visible) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center ">
@@ -24,7 +24,7 @@ export default function AddItemModal({ visible, onClose, items, setItems }) {
             </svg>
           </button>
         </div>
-        <AddItemForm onClose={onClose} items={items} setItems={setItems} />
+        <AddItemForm onClose={onClose} />
       </div>
     </div>
   );

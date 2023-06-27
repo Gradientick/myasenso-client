@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import ItemsContext from "../features/ItemsContext";
 import itemService from "../services/itemService";
 import SellModal from "./SellModal";
 
-function InventoryItems({ items, setItems, price, setPrice }) {
+function InventoryItems({ price, setPrice }) {
+  const { items, setItems } = useContext(ItemsContext);
   const [showSell, setShowSell] = useState(false);
   const handleClose = () => setShowSell(false);
 

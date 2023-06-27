@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddItemModal from "./AddItemModal";
 import SellModal from "./SellModal";
-function InventoryHeading({ items, setItems }) {
+function InventoryHeading() {
   const [showModal, setShowModal] = useState(false);
   const [showSell, setShowSell] = useState(false);
 
@@ -23,12 +23,7 @@ function InventoryHeading({ items, setItems }) {
       >
         Sell Item
       </button> */}
-      <AddItemModal
-        visible={showModal}
-        onClose={handleOnClose}
-        items={items}
-        setItems={setItems}
-      />
+      <AddItemModal visible={showModal} onClose={handleOnClose} />
     </div>
   );
 }
