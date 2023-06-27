@@ -5,8 +5,10 @@ import itemService from "../services/itemService";
 import nameService from "../services/nameService";
 import { Navigate, useNavigate } from "react-router-dom";
 import NameContext from "../features/NameContext";
+import TitleContext from "../features/TitleContext";
 
 function LoginForm({ onFormSwitch }) {
+  const { setTitle } = useContext(TitleContext);
   const { setName } = useContext(NameContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +39,7 @@ function LoginForm({ onFormSwitch }) {
         setUser(res);
         setPassword("");
         setName(JSON.parse(window.localStorage.getItem("loggedUser")).name);
+        setTitle(JSON.parse(window.localStorage.getItem("loggedUser")).title);
       })
       .catch((error) => console.log(error));
   };
