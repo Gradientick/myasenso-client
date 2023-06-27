@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import loginService from "../services/loginService";
-import "./LoginForm.css";
+import "../css/LoginForm.css";
 import itemService from "../services/itemService";
 import nameService from "../services/nameService";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -41,33 +41,39 @@ function LoginForm({ onFormSwitch }) {
   // const response = await loginService.login({ email, password };
 
   return (
-    <form onSubmit={handleLogin}>
-      {/* {user === null ?  : (to="/dashboard")} */}
-      <input
-        type="text"
-        className="email-input"
-        placeholder="Email"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        className="password-input"
-        placeholder="Password"
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <>
+      <form onSubmit={handleLogin}>
+        <h3>WELCOMEBACK</h3>
+        <h2>Sign In to Your Account</h2>
+        <p>Let's get you signed in and straight to the icons.</p>
+        {/* {user === null ?  : (to="/dashboard")} */}
+        <label htmlFor="email">Email Address</label>
+        <input
+          type="text"
+          className="email-input"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          className="password-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button className="login-button" onClick={handleLogin}>
-        Login
-      </button>
+        <button className="login-button" onClick={handleLogin}>
+          Sign In
+        </button>
 
-      <p className="create-account" onClick={() => onFormSwitch("register")}>
-        Don't have an account? create one
+        
+      </form>
+      <p>
+        Don't have an account? <span className="create-account" onClick={() => onFormSwitch("register")}>Sign Up and Get Started</span>
       </p>
-    </form>
+    </>
+    
   );
 }
 

@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
+}
+
+.page-title-txt {
+  font-weight: 900;
+  font-size: 30px;
+  margin-left: 1em;
+}
+
+.page-title-txt span {
+  color: #f7c428;
+}
+
+.dashboard-page {
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  height: 80px;
+}
+
+.modal label{
+  color: black;
+}
+
+@media only screen and (max-width: 425px) {
+  .navbar {
+    flex-direction: column;
+    height: 120px;
+  }
+}

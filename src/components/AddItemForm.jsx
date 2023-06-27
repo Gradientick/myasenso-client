@@ -1,13 +1,15 @@
 import { useState, useContext, useRef } from "react";
 import itemService from "../services/itemService";
 // import ItemContext from "../features/ItemContext";
-function AddItemForm() {
+function AddItemForm({ image , name , price , quantity , setImage , setName ,setPrice , setQuantity}) {
   // const { items, setItems } = useContext(ItemContext);
+
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const fileInputRef = useRef(null);
+
 
   const itemObject = new FormData();
   itemObject.append("image", image);
@@ -26,10 +28,30 @@ function AddItemForm() {
         fileInputRef.current.value = null;
       })
       .catch((error) => console.log(error));
+
+    const newItemData = new FormData();
+    newItemData.append("image", image);
+    newItemData.append("name", name);
+    newItemData.append("price", price);
+    newItemData.append("quantity", quantity);
+
+    itemService
+      .createItem(newItemData)
+      .then((res) => {
+        console.log("response:", res.data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setImage("");
+        setName("");
+        setPrice("");
+        setQuantity("");
+        onclose();
+      });
   };
   return (
-    <form className="flex justify-evenly " onSubmit={addItem}>
-      <label>Item Image</label>
+    <form className="flex justify-evenly modal" onSubmit={addItem}>
+      <label htmlFor="file">Item Image:</label>
       <input
         type="file"
         accept="image/*"
@@ -37,13 +59,13 @@ function AddItemForm() {
         onChange={(e) => setImage(e.target.files[0])}
         className="border-solid border-2 border-secondary rounded-md p-1"
       />
-      <label>Item Name:</label>
+      <label htmlFor="text">Item Name:</label>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label>Price:</label>
+      <label htmlFor="number">Price:</label>
       <input
         type="number"
         value={price}

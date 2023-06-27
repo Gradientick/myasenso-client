@@ -1,5 +1,5 @@
 import React from "react";
-import "./UserFeedback.css";
+import "../css/UserFeedback.css";
 import ceoImage from "../assets/ceo.png";
 import soleImage from "../assets/sole prop.png";
 import customer from "../assets/custServ.png";
@@ -7,12 +7,14 @@ import customer from "../assets/custServ.png";
 function UserFeedback() {
   return (
     <div>
-      <div className="main">
+      <div className="feedback-container gap-11 bg-lightgrey">
+        <h3 className="col-span-full font-black">USER FEEDBACK</h3>
         <div className="card">
           <div className="frame">
             <img src={soleImage} alt="Sole Proprietor" />
           </div>
-          <p>
+          <h4>User Name</h4>
+          <p className="card-text">
             I have been using the MyAsenso App for the past six months, and it
             has completely transformed the way I manage my business. As a small
             business owner, I needed a tool that could streamline my operations
@@ -30,8 +32,8 @@ function UserFeedback() {
           <div className="frame">
             <img src={customer} alt="satisfied customer" />
           </div>
-
-          <p>
+          <h4>User Name</h4>
+          <p className="card-text">
             One of the standout features of the app is its robust customer
             support. Whenever I have encountered a problem or had a question,
             their support team has been incredibly responsive and helpful. They
@@ -43,7 +45,8 @@ function UserFeedback() {
           <div className="frame">
             <img src={ceoImage} alt="ceo image" />
           </div>
-          <p>
+          <h4>User Name</h4>
+          <p className="card-text">
             I cannot recommend the MyAsenso App enough. It has simplified my
             workflow, enhanced productivity, and ultimately contributed to the
             growth of my business. If you are a business owner looking for an

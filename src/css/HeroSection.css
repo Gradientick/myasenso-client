@@ -1,0 +1,59 @@
+.header {
+  background-color: rgb(247, 196, 40);
+  height: 100vh;
+  padding: 2% 3%;
+}
+
+.header-container {
+  display: flex;
+  width: auto;
+  height: 80%;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.welcome-text {
+  width: 60%;
+  text-align: center;
+}
+
+.page-logo {
+  width: 100px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.welcome-text h2 {
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.welcome-text p {
+  font-size: 1.3em;
+}
+
+.welcome-text p span {
+  font-weight: 900;
+}
+
+.login-form-container {
+  width: 35%;
+  height: 100%;
+  background-color: rgb(235, 235, 235);
+  border-radius: 40px;
+}
+
+@media only screen and (max-width: 425px) {
+  .welcome-text {
+    width: 90%;
+  }
+  
+  .welcome-text h2 {
+    font-size: 2.5em;
+    font-weight: 600;
+  }
+  
+  .welcome-text p {
+    font-size: 1.1em;
+  }
+}
