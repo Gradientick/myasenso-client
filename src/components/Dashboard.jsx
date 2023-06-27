@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 function Dashboard({ textContent }) {
-  const [Name, SetName] = useState("Business Name");
+  const [Name, SetName] = useState("Business Performance");
 
   // useEffect(() => {
   //   nameService.getName().then((response) => {

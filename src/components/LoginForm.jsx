@@ -43,10 +43,9 @@ function LoginForm({ onFormSwitch }) {
   return (
     <>
       <form onSubmit={handleLogin}>
-        <h3>WELCOMEBACK</h3>
+        <h3>WELCOME USER</h3>
         <h2>Sign In to Your Account</h2>
-        <p>Let's get you signed in and straight to the icons.</p>
-        {/* {user === null ?  : (to="/dashboard")} */}
+
         <label htmlFor="email">Email Address</label>
         <input
           type="text"
@@ -66,14 +65,17 @@ function LoginForm({ onFormSwitch }) {
         <button className="login-button" onClick={handleLogin}>
           Sign In
         </button>
-
-        
       </form>
       <p>
-        Don't have an account? <span className="create-account" onClick={() => onFormSwitch("register")}>Sign Up and Get Started</span>
+        Don't have an account?{" "}
+        <span
+          className="create-account"
+          onClick={() => onFormSwitch("register")}
+        >
+          Sign Up and Get Started
+        </span>
       </p>
     </>
-    
   );
 }
 

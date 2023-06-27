@@ -1,18 +1,11 @@
 import React from "react";
-import "./Footer.css";
 
 function Footer() {
   return (
-    <footer>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <h1>Keep track of your Business with Us!</h1>
-          </div>
-          <div className="copyright">
-            <p>&copy; 2023 Your Business Name. All rights reserved.</p>
-          </div>
-        </div>
+    <footer className="">
+      <div className="flex-column justify-center align-center text-center p-2 w-full bg-primary">
+        <h1>Keep track of your Business with Us!</h1>
+        <p>&copy; 2023 MyAsenso. All rights reserved.</p>
       </div>
     </footer>
   );

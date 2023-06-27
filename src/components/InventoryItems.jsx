@@ -1,10 +1,12 @@
 import { useEffect, useContext, useState } from "react";
 import ItemContext from "../features/ItemContext";
 import itemService from "../services/itemService";
-
+import SellModal from "./SellModal";
 function InventoryItems() {
   // const { items, setItems } = useContext(ItemContext);
   const [items, setItems] = useState([]);
+  const [showSell, setShowSell] = useState(false);
+  const handleClose = () => setShowSell(false);
 
   useEffect(() => {
     itemService
@@ -15,43 +17,6 @@ function InventoryItems() {
       .catch((err) => console.log(err));
   });
 
-  // let items = [
-  //   {
-  //     name: "Sword",
-  //     image: "https://i.imgur.com/HqKq8XK.png",
-  //     price: "100",
-  //     id: 1,
-  //     quantity: "3",
-  //   },
-  //   {
-  //     name: "Sword",
-  //     image: "https://i.imgur.com/HqKq8XK.png",
-  //     price: "100",
-  //     id: 2,
-  //     quantity: "3",
-  //   },
-  //   {
-  //     name: "Sword",
-  //     image: "https://i.imgur.com/HqKq8XK.png",
-  //     price: "100",
-  //     id: 3,
-  //     quantity: "3",
-  //   },
-  //   {
-  //     name: "Sword",
-  //     image: "https://i.imgur.com/HqKq8XK.png",
-  //     price: "100",
-  //     id: 4,
-  //     quantity: "3",
-  //   },
-  //   {
-  //     name: "Sword",
-  //     image: "https://i.imgur.com/HqKq8XK.png",
-  //     price: "100",
-  //     id: 5,
-  //     quantity: "3",
-  //   },
-  // ];
   return (
     <div className="bg-darkgreen grid ">
       <ul className="grid grid-cols-6 gap-3 p-2">
@@ -65,12 +30,20 @@ function InventoryItems() {
             <p>Quantity: {item.quantity}</p>
             <p>₱{item.price}</p>
             <div className="flex gap-2 justify-evenly">
-              <button className="bg-secondary w-16 rounded-lg">Sell</button>
-              <button className="bg-red  w-16 rounded-lg">Remove</button>
+              <button
+                className="bg-secondary w-16 rounded-lg cursor-pointer"
+                onClick={() => setShowSell(true)}
+              >
+                Sell
+              </button>
+              <button className="bg-red  w-16 rounded-lg cursor-pointer">
+                Remove
+              </button>
             </div>
           </li>
         ))}
       </ul>
+      <SellModal visible={showSell} onClose={handleClose} />
     </div>
   );
 }

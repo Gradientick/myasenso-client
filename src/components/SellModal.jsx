@@ -1,7 +1,7 @@
 import React from "react";
 import SellForm from "./SellForm";
 
-function SellModal({ visible, onClose ,  image , name , price , quantity , setQuantity}) {
+function SellModal({ visible, onClose }) {
   if (!visible) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center ">
@@ -24,7 +24,7 @@ function SellModal({ visible, onClose ,  image , name , price , quantity , setQu
             </svg>
           </button>
         </div>
-        <SellForm onClose image={image} name={name} price={price} quantity={quantity} setQuantity={setQuantity}/>
+        <SellForm onClose />
       </div>
     </div>
   );

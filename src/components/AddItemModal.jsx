@@ -1,7 +1,7 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
 
-export default function AddItemModal({ visible, onClose , image , name , price , quantity , setImage , setName ,setPrice , setQuantity}) {
+export default function AddItemModal({ visible, onClose }) {
   if (!visible) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center ">
@@ -24,7 +24,7 @@ export default function AddItemModal({ visible, onClose , image , name , price ,
             </svg>
           </button>
         </div>
-        <AddItemForm onClose image={image} setImage={setImage} name={name} setName={setName} price={price} setPrice={setPrice} quantity={quantity} setQuantity={setQuantity}/>
+        <AddItemForm onClose={onClose} />
       </div>
     </div>
   );
