@@ -3,8 +3,6 @@ import ItemsContext from "../features/ItemsContext";
 
 function Stats() {
   const { items } = useContext(ItemsContext);
-  const [numberOfStocks, setNumberOfStocks] = useState(0);
-  const [totalEarnings, setTotalEarnings] = useState(0);
   return (
     <div>
       <div className="bg-whitesmoke py-20 sm:py-10">
@@ -26,7 +24,7 @@ function Stats() {
                 Total Earnings
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                ₱{totalEarnings}
+                ₱{}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">

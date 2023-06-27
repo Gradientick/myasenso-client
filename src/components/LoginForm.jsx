@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import loginService from "../services/loginService";
 import "../css/LoginForm.css";
 import itemService from "../services/itemService";
 import nameService from "../services/nameService";
 import { Navigate, useNavigate } from "react-router-dom";
+import NameContext from "../features/NameContext";
 
 function LoginForm({ onFormSwitch }) {
+  const { setName } = useContext(NameContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -34,6 +36,7 @@ function LoginForm({ onFormSwitch }) {
         nameService.setToken(res.token);
         setUser(res);
         setPassword("");
+        setName(JSON.parse(window.localStorage.getItem("loggedUser")).name);
       })
       .catch((error) => console.log(error));
   };
