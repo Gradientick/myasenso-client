@@ -1,6 +1,9 @@
 import { useState, useContext, useRef } from "react";
+import ItemsContext from "../features/ItemsContext";
 import itemService from "../services/itemService";
-function AddItemForm({ onClose, items, setItems }) {
+
+function AddItemForm({ onClose }) {
+  const { items, setItems } = useContext(ItemsContext);
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
