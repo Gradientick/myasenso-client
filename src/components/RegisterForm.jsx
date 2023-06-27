@@ -25,8 +25,8 @@ function RegisterForm({ onFormSwitch }) {
 
   return (
     <form onSubmit={handleRegister}>
-      <h3>Get Started with Font Awesome</h3>
-      <p>The easiest way to manage your business. It's your very own inventory dashboard, all bundled up in one site.</p>
+      <h3>Get Started with MyAsenso</h3>
+      <p>Get Started by Creating an Account</p>
       <input
         type="text"
         className="email-input"
@@ -69,7 +69,10 @@ function RegisterForm({ onFormSwitch }) {
       </button>
       {/* <p className="forgot-password">Forgot password?</p> */}
       <p>
-        Already have an account? <span className="create-account" onClick={() => onFormSwitch("login")}>Sign in</span>
+        Already have an account?{" "}
+        <span className="create-account" onClick={() => onFormSwitch("login")}>
+          Sign in
+        </span>
       </p>
     </form>
   );

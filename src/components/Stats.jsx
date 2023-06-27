@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import ItemsContext from "../features/ItemsContext";
+import PriceContext from "../features/PriceContext";
 
 function Stats() {
   const { items } = useContext(ItemsContext);
+  const { price } = useContext(PriceContext);
   return (
     <div>
       <div className="bg-whitesmoke py-20 sm:py-10">
@@ -24,7 +26,7 @@ function Stats() {
                 Total Earnings
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                ₱{}
+                ₱{price.reduce((total, item) => total + item.price, 0)}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">

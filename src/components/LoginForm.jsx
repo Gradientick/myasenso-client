@@ -49,7 +49,7 @@ function LoginForm({ onFormSwitch }) {
   return (
     <>
       <form onSubmit={handleLogin}>
-        <h3>WELCOME USER</h3>
+        <h3>WELCOME TO MYASENSO</h3>
         <h2>Sign In to Your Account</h2>
 
         <label htmlFor="email">Email Address</label>

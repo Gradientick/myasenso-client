@@ -1,19 +1,17 @@
 import { useEffect, useState, useContext } from "react";
 import ItemsContext from "../features/ItemsContext";
 import itemService from "../services/itemService";
-import SellModal from "./SellModal";
+import PriceContext from "../features/PriceContext";
 
-function InventoryItems({ price, setPrice }) {
+function InventoryItems() {
   const { items, setItems } = useContext(ItemsContext);
-  const [showSell, setShowSell] = useState(false);
-  const handleClose = () => setShowSell(false);
-
+  const { setPrice } = useContext(PriceContext);
+  let newNumber = 0;
   useEffect(() => {
     itemService
       .getItems()
       .then((res) => {
         setItems(res);
-        setPrice(res.price);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,6 +24,27 @@ function InventoryItems({ price, setPrice }) {
       })
       .catch((error) => console.log(error));
   };
+
+  // const handleSell = (id) => {
+  //   itemService.getItem(id).then((res) => {
+  //     newNumber = res.price;
+  //     setPrice.concat(newNumber);
+  //   });
+  //   itemService.updateItem(id).then((res) => {
+  //     setItems(items.filter((item) => item.id !== id));
+  //     console.log(res);
+  //   });
+  // };
+  // const reduceItemQuantity = (id) => {
+  //   let newNumber = 0;
+  //   itemService.getItem(id).then((res) => {
+  //     newNumber = --res.quantity;
+  //     console.log(newNumber);
+  //   });
+  //   itemService.updateItem(id, newNumber).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
   return (
     <div className="bg-darkgreen grid ">
       <ul className="grid grid-cols-6 gap-3 p-2">
@@ -40,13 +59,13 @@ function InventoryItems({ price, setPrice }) {
             <p>₱{item.price}</p>
             <div className="flex gap-2 justify-evenly">
               <button
-                className="bg-secondary w-16 rounded-lg cursor-pointer"
-                onClick={() => setShowSell(true)}
+                className="bg-secondary w-1/2 rounded-md cursor-pointer hover:bg-green focus:outline-none sell"
+                // onClick={() => }
               >
                 Sell
               </button>
               <button
-                className="bg-red  w-16 rounded-lg cursor-pointer"
+                className="bg-red  w-1/2 rounded-md cursor-pointer hover:bg-orange-500 remove"
                 onClick={() => deleteItem(item.id)}
               >
                 Remove
@@ -55,7 +74,6 @@ function InventoryItems({ price, setPrice }) {
           </li>
         ))}
       </ul>
-      <SellModal visible={showSell} onClose={handleClose} />
     </div>
   );
 }

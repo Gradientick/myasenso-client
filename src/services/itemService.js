@@ -17,6 +17,11 @@ async function getItems() {
   return response.data;
 }
 
+async function getItem(id) {
+  const response = await apiClient.get(`/items/${id}`);
+  return response.data;
+}
+
 async function createItem(item) {
   const response = await apiClient.post("/items", item);
   return response.data;
@@ -35,6 +40,7 @@ async function deleteItem(id) {
 export default {
   setToken,
   getItems,
+  getItem,
   createItem,
   updateItem,
   deleteItem,
