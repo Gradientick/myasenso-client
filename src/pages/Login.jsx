@@ -1,8 +1,16 @@
+
 import React, { useState} from 'react'
 import LoginForm from "../components/LoginForm.jsx";
 import RegisterForm from '../components/RegisterForm.jsx';
 import NavBar from '../components/NavBarLogin.jsx';
 import '../css/LoginPage.css'
+
+import React from "react";
+import Header from "../components/Header.jsx";
+import HeroSection from "../components/HeroSection.jsx";
+import UserFeedback from "../components/UserFeedback.jsx";
+import Footer from "../components/Footer.jsx";
+
 
 export default function Login() {
   const [currentForm, setCurrentForm] = useState(`login`);
@@ -11,6 +19,7 @@ export default function Login() {
     setCurrentForm(formName);
   };
   return (
+
     <>
       <NavBar/>
       <div className="login-page">
@@ -22,6 +31,12 @@ export default function Login() {
           )}
         </div>
       </div>
+ <div>
+      <Header />
+      <HeroSection />
+      <UserFeedback />
+      <Footer />
+    </div>
     </>
   );
 }

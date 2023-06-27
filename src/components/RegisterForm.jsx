@@ -13,8 +13,8 @@ function RegisterForm({ onFormSwitch }) {
     e.preventDefault();
     registerService
       .register({ email, password, name, number, title })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => console.log(res));
+    onFormSwitch("login").catch((err) => console.log(err));
     // onFormSwitch("login");
     // setEmail("");
     // setPassword("");
