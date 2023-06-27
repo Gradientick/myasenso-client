@@ -1,10 +1,8 @@
-import { useEffect, useContext, useState } from "react";
-import ItemContext from "../features/ItemContext";
+import { useEffect, useState } from "react";
 import itemService from "../services/itemService";
 import SellModal from "./SellModal";
-function InventoryItems() {
-  // const { items, setItems } = useContext(ItemContext);
-  const [items, setItems] = useState([]);
+
+function InventoryItems({ items, setItems, price, setPrice }) {
   const [showSell, setShowSell] = useState(false);
   const handleClose = () => setShowSell(false);
 
@@ -13,9 +11,10 @@ function InventoryItems() {
       .getItems()
       .then((res) => {
         setItems(res);
+        setPrice(res.price);
       })
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   return (
     <div className="bg-darkgreen grid ">
@@ -36,7 +35,10 @@ function InventoryItems() {
               >
                 Sell
               </button>
-              <button className="bg-red  w-16 rounded-lg cursor-pointer">
+              <button
+                className="bg-red  w-16 rounded-lg cursor-pointer"
+                onClick={() => getQuantity()}
+              >
                 Remove
               </button>
             </div>

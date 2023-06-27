@@ -9,10 +9,10 @@ function HeroSection() {
         <div className="header-container">
           <div className="welcome-text">
             <img src={logo} alt="logo" className="page-logo" />
-            <h2>Take the hassle out of management in your business.</h2>
+            <h2>Take the hassle out of tracking your business.</h2>
             <p>
               <span>MyAsenso</span> is the Internet's business inventory and
-              manager for business owners, entrepreneur, and content creators.
+              tracker for business owners, entrepreneur, and content creators.
             </p>
           </div>
         </div>

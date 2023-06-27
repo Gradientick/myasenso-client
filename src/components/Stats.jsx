@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Stats() {
+function Stats({ items }) {
   const [numberOfStocks, setNumberOfStocks] = useState(0);
   const [totalEarnings, setTotalEarnings] = useState(0);
   return (
@@ -13,7 +13,10 @@ function Stats() {
                 Number of stocks
               </dt>
               <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                {numberOfStocks}
+                {items.reduce(
+                  (totalQuantity, item) => totalQuantity + item.quantity,
+                  0
+                )}
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">

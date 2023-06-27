@@ -1,6 +1,6 @@
 import { useState, useContext, useRef } from "react";
 import itemService from "../services/itemService";
-function AddItemForm({ onClose }) {
+function AddItemForm({ onClose, items, setItems }) {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -17,7 +17,8 @@ function AddItemForm({ onClose }) {
     itemService
       .createItem(itemObject)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        setItems(items.concat(res));
         setName("");
         setPrice("");
         setQuantity("");
