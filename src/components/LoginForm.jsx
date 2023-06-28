@@ -5,10 +5,13 @@ import loginService from "../services/loginService.js";
 import itemService from "../services/itemService.js";
 import UserContext from "../features/UserContext";
 
+import TitleContext from "../features/TitleContext";
+
 function LoginForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(UserContext);
+  const { setTitle } = useContext(TitleContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function LoginForm({ onFormSwitch }) {
         window.localStorage.setItem("loggedUser", JSON.stringify(res));
         itemService.setToken(res.token);
         setUser(res);
+        setTitle(res.title);
         setPassword("");
       })
       .catch((error) => console.log(error));

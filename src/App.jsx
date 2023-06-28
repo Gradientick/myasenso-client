@@ -16,8 +16,8 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState([]);
-  const [user, setUser] = useState(null);
+  const [price, setPrice] = useState([0]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");

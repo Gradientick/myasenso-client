@@ -5,7 +5,7 @@ import PriceContext from "../features/PriceContext";
 
 function InventoryItems() {
   const { items, setItems } = useContext(ItemsContext);
-  // // const { setPrice } = useContext(PriceContext);
+  const { price, setPrice } = useContext(PriceContext);
   // // let newNumber = 0;
 
   useEffect(() => {
@@ -27,7 +27,12 @@ function InventoryItems() {
   const handleDecreaseQuantity = (id, item) => {
     const newQuantity = item.quantity - 1;
     const itemObject = { quantity: newQuantity };
-
+    let currentQuantity = itemObject.quantity;
+    // let itemPrice = item.price;
+    if (currentQuantity <= 0) {
+      deleteItem(id);
+      return;
+    }
     itemService
       .updateItem(id, itemObject)
       .then((res) => {
@@ -40,6 +45,13 @@ function InventoryItems() {
         setItems(updatedItems);
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleGetPrice = (item) => {
+    const priceToAdd = item.price; // Example number to concatenate
+    const newArray = [priceToAdd];
+
+    setPrice((prevState) => [...prevState, priceToAdd]);
   };
 
   return (
@@ -57,7 +69,10 @@ function InventoryItems() {
             <div className="flex gap-2 justify-evenly">
               <button
                 className="bg-secondary w-1/2 rounded-md cursor-pointer hover:bg-green focus:outline-none sell"
-                onClick={() => handleDecreaseQuantity(item.id, item)}
+                onClick={() => {
+                  handleDecreaseQuantity(item.id, item);
+                  handleGetPrice(item);
+                }}
               >
                 Sell
               </button>

@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import TitleContext from "../features/TitleContext";
+// import TitleContext from "../features/TitleContext";
 function Dashboard() {
-  const { title, setTitle } = useContext(TitleContext);
+  // const { title, setTitle } = useContext(TitleContext);
+  const { title } = useContext(TitleContext);
 
   return (
     <div className="bg-primary grid h-60 place-items-center">
