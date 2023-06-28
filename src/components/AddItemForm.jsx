@@ -57,7 +57,7 @@ function AddItemForm({ onClose }) {
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
       />
-      <button className="bg-secondary hover:bg-green" onClick={addItem}>
+      <button className="bg-secondary hover:bg-green" type="submit">
         Add New Item
       </button>
     </form>
