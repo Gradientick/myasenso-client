@@ -1,28 +1,15 @@
 import { useState, useEffect, useContext } from "react";
-import loginService from "../services/loginService";
 import "../css/LoginForm.css";
-import itemService from "../services/itemService";
-import nameService from "../services/nameService";
-import { Navigate, useNavigate } from "react-router-dom";
-import NameContext from "../features/NameContext";
-import TitleContext from "../features/TitleContext";
+import { useNavigate } from "react-router-dom";
+import loginService from "../services/loginService.js";
+import itemService from "../services/itemService.js";
+import UserContext from "../features/UserContext";
 
 function LoginForm({ onFormSwitch }) {
-  const { setTitle } = useContext(TitleContext);
-  const { setName } = useContext(NameContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedUser");
-
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-      itemService.setToken(user.token);
-    }
-  }, []);
 
   useEffect(() => {
     if (user?.token) navigate("/dashboard");
@@ -35,16 +22,11 @@ function LoginForm({ onFormSwitch }) {
       .then((res) => {
         window.localStorage.setItem("loggedUser", JSON.stringify(res));
         itemService.setToken(res.token);
-        nameService.setToken(res.token);
         setUser(res);
         setPassword("");
-        setName(JSON.parse(window.localStorage.getItem("loggedUser")).name);
-        setTitle(JSON.parse(window.localStorage.getItem("loggedUser")).title);
       })
       .catch((error) => console.log(error));
   };
-
-  // const response = await loginService.login({ email, password };
 
   return (
     <>
@@ -68,7 +50,7 @@ function LoginForm({ onFormSwitch }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="login-button" onClick={handleLogin}>
+        <button type="submit" className="login-button">
           Sign In
         </button>
       </form>

@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import NameContext from "../features/NameContext";
+import UserContext from "../features/UserContext";
 
 export default function NavBar() {
-  const { name } = useContext(NameContext);
-  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+
   const handleLogout = () => {
     window.localStorage.clear();
-    navigate("/");
+    setUser(null);
   };
+
   return (
     <div className="navbar justify-between items-center p-4 ">
       <Link to="/">
@@ -24,7 +24,9 @@ export default function NavBar() {
         <Link className=" hover:text-sky-700 cursor-pointer " to="/feedbacks">
           Feedback
         </Link>
-        <p>{name} is logged in</p>
+        <p>
+          <span className="font-bold">{user?.name}</span> is logged in
+        </p>
         <button
           className="bg-blue text-white px-4 py-2  text-center hover:bg-sky-700 cursor-pointer"
           onClick={handleLogout}

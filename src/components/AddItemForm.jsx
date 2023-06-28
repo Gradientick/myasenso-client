@@ -20,7 +20,6 @@ function AddItemForm({ onClose }) {
     itemService
       .createItem(itemObject)
       .then((res) => {
-        console.log(res);
         setItems(items.concat(res));
         setName("");
         setPrice("");

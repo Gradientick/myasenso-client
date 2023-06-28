@@ -1,15 +1,16 @@
 import axios from "axios";
+
 const apiClient = axios.create({
   baseURL: "http://localhost:5000/api",
   headers: {
     common: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
   },
 });
 
-function setToken(token) {
-  apiClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+function setToken(newToken) {
+  apiClient.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
 }
 
 async function getItems() {
