@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import ItemsContext from "../features/ItemsContext";
 import PriceContext from "../features/PriceContext";
+import LoadingSpinner from "../loadingComponents/LoadingSpinner";
 
 function Stats() {
   const { items } = useContext(ItemsContext);

@@ -10,7 +10,9 @@ import NameContext from "./features/NameContext";
 import TitleContext from "./features/TitleContext";
 import PriceContext from "./features/PriceContext";
 import UserContext from "./features/UserContext";
+import LoadingContext from "./features/LoadingContext";
 import itemService from "./services/itemService";
+import LoadingSpinner from "./loadingComponents/LoadingSpinner";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -18,6 +20,7 @@ export default function App() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState([0]);
   const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
@@ -36,12 +39,14 @@ export default function App() {
           <TitleContext.Provider value={{ title, setTitle }}>
             <PriceContext.Provider value={{ price, setPrice }}>
               <UserContext.Provider value={{ user, setUser }}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/dashboard" element={<DashboardPage />} />
-                  <Route path="/feedbacks" element={<FeedbackPage />} />
-                </Routes>
+                <LoadingContext.Provider value={{ loading, setLoading }}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                    <Route path="/feedbacks" element={<FeedbackPage />} />
+                  </Routes>
+                </LoadingContext.Provider>
               </UserContext.Provider>
             </PriceContext.Provider>
           </TitleContext.Provider>

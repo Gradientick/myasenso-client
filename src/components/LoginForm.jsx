@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import loginService from "../services/loginService.js";
 import itemService from "../services/itemService.js";
 import UserContext from "../features/UserContext";
-
+import LoadingContext from "../features/LoadingContext";
+import LoadingSpinner from "../loadingComponents/LoadingSpinner";
 import TitleContext from "../features/TitleContext";
 
 function LoginForm({ onFormSwitch }) {
@@ -12,6 +13,7 @@ function LoginForm({ onFormSwitch }) {
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(UserContext);
   const { setTitle } = useContext(TitleContext);
+  const { loading, setLoading } = useContext(LoadingContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +21,7 @@ function LoginForm({ onFormSwitch }) {
   }, [user, navigate]);
 
   const handleLogin = (e) => {
+    setLoading(true);
     e.preventDefault();
     loginService
       .login({ email, password })
@@ -29,9 +32,17 @@ function LoginForm({ onFormSwitch }) {
         setTitle(res.title);
         setPassword("");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   };
 
+  if (loading) {
+    return (
+      <div className="flex p-20 items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
   return (
     <>
       <form onSubmit={handleLogin}>

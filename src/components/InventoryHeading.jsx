@@ -17,7 +17,7 @@ function InventoryHeading() {
       <div className="flex items-center gap-2">
         <button
           onClick={() => clearEarnings()}
-          className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
+          className="bg-red text-white px-3 py-1 rounded-md hover:bg-darkred"
         >
           Clear Earnings
         </button>

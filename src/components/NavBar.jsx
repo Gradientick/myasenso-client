@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../features/UserContext";
+import LoadingSpinner from "../loadingComponents/LoadingSpinner";
 
 export default function NavBar() {
   const { user, setUser } = useContext(UserContext);
@@ -27,6 +28,7 @@ export default function NavBar() {
         <p>
           <span className="font-bold">{user?.name}</span> is logged in
         </p>
+
         <button
           className="bg-blue text-white px-4 py-2  text-center hover:bg-sky-700 cursor-pointer"
           onClick={handleLogout}

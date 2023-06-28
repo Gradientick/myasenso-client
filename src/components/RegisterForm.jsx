@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import registerService from "../services/registerService";
+import LoadingContext from "../features/LoadingContext";
+import LoadingSpinner from "../loadingComponents/LoadingSpinner";
 
 import "../css/LoginForm.css";
 function RegisterForm({ onFormSwitch }) {
@@ -8,12 +10,15 @@ function RegisterForm({ onFormSwitch }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [title, setTitle] = useState("");
+  const { loading, setLoading } = useContext(LoadingContext);
 
   const handleRegister = (e) => {
+    setLoading(true);
     e.preventDefault();
     registerService
       .register({ email, password, name, number, title })
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .then(() => setLoading(false));
     onFormSwitch("login").catch((err) => console.log(err));
     // onFormSwitch("login");
     // setEmail("");
@@ -22,6 +27,14 @@ function RegisterForm({ onFormSwitch }) {
     // setNumber("");
     // setTitle("");
   };
+
+  if (loading) {
+    return (
+      <div className="flex p-20 items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleRegister}>

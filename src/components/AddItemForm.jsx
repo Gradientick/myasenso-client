@@ -1,13 +1,16 @@
 import { useState, useContext, useRef } from "react";
 import ItemsContext from "../features/ItemsContext";
 import itemService from "../services/itemService";
+import LoadingSpinner from "../loadingComponents/LoadingSpinner";
 
 function AddItemForm({ onClose }) {
   const { items, setItems } = useContext(ItemsContext);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+
   const fileInputRef = useRef(null);
 
   const itemObject = new FormData();
@@ -16,6 +19,7 @@ function AddItemForm({ onClose }) {
   itemObject.append("price", price);
   itemObject.append("quantity", quantity);
   const addItem = (e) => {
+    setLoading(true);
     e.preventDefault();
     itemService
       .createItem(itemObject)
@@ -25,10 +29,22 @@ function AddItemForm({ onClose }) {
         setPrice("");
         setQuantity("");
         fileInputRef.current.value = null;
-        onClose();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        onClose();
+        setLoading(false);
+      });
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center p-10 ">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <form className="flex justify-evenly modal" onSubmit={addItem}>
       <label htmlFor="file">Item Image:</label>
