@@ -48,9 +48,7 @@ function InventoryItems() {
   };
 
   const handleGetPrice = (item) => {
-    const priceToAdd = item.price; // Example number to concatenate
-    const newArray = [priceToAdd];
-
+    const priceToAdd = item.price;
     setPrice((prevState) => [...prevState, priceToAdd]);
   };
 

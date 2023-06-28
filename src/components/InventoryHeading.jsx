@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import AddItemModal from "./AddItemModal";
-import SellModal from "./SellModal";
+import PriceContext from "../features/PriceContext";
 function InventoryHeading() {
   const [showModal, setShowModal] = useState(false);
-  const [showSell, setShowSell] = useState(false);
+  const { setPrice } = useContext(PriceContext);
 
   const handleOnClose = () => setShowModal(false);
-  const handleClose = () => setShowSell(false);
+
+  const clearEarnings = () => {
+    setPrice([0]);
+  };
 
   return (
     <div className="h-11 bg-secondary flex items-center justify-between px-5">
       <h1 className="text-2xl">Inventory</h1>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
-      >
-        Add Item
-      </button>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => clearEarnings()}
+          className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
+        >
+          Clear Earnings
+        </button>
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
+        >
+          Add Item
+        </button>
+      </div>
       {/* <button
         onClick={() => setShowSell(true)}
         className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
