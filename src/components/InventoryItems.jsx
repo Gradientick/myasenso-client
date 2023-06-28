@@ -1,18 +1,17 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import ItemsContext from "../features/ItemsContext";
 import itemService from "../services/itemService";
 import PriceContext from "../features/PriceContext";
 
 function InventoryItems() {
   const { items, setItems } = useContext(ItemsContext);
-  const { setPrice } = useContext(PriceContext);
-  let newNumber = 0;
+  // // const { setPrice } = useContext(PriceContext);
+  // // let newNumber = 0;
+
   useEffect(() => {
     itemService
       .getItems()
-      .then((res) => {
-        setItems(res);
-      })
+      .then((res) => setItems(res))
       .catch((err) => console.log(err));
   }, []);
 
@@ -25,26 +24,24 @@ function InventoryItems() {
       .catch((error) => console.log(error));
   };
 
-  // const handleSell = (id) => {
-  //   itemService.getItem(id).then((res) => {
-  //     newNumber = res.price;
-  //     setPrice.concat(newNumber);
-  //   });
-  //   itemService.updateItem(id).then((res) => {
-  //     setItems(items.filter((item) => item.id !== id));
-  //     console.log(res);
-  //   });
-  // };
-  // const reduceItemQuantity = (id) => {
-  //   let newNumber = 0;
-  //   itemService.getItem(id).then((res) => {
-  //     newNumber = --res.quantity;
-  //     console.log(newNumber);
-  //   });
-  //   itemService.updateItem(id, newNumber).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+  const handleDecreaseQuantity = (id, item) => {
+    const newQuantity = item.quantity - 1;
+    const itemObject = { quantity: newQuantity };
+
+    itemService
+      .updateItem(id, itemObject)
+      .then((res) => {
+        const updatedItems = items.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: newQuantity };
+          }
+          return item;
+        });
+        setItems(updatedItems);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="bg-darkgreen grid ">
       <ul className="grid grid-cols-6 gap-3 p-2">
@@ -60,7 +57,7 @@ function InventoryItems() {
             <div className="flex gap-2 justify-evenly">
               <button
                 className="bg-secondary w-1/2 rounded-md cursor-pointer hover:bg-green focus:outline-none sell"
-                // onClick={() => }
+                onClick={() => handleDecreaseQuantity(item.id, item)}
               >
                 Sell
               </button>
