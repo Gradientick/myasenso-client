@@ -19,12 +19,12 @@ export default function NavBar() {
         </h1>
       </Link>
       <div className="flex items-center gap-8">
-        <Link className=" hover:text-sky-700 cursor-pointer " to="/dashboard">
+        {/* <Link className=" hover:text-sky-700 cursor-pointer " to="/dashboard">
           Dashboard
         </Link>
         <Link className=" hover:text-sky-700 cursor-pointer " to="/feedbacks">
           Feedback
-        </Link>
+        </Link> */}
         <p>
           <span className="font-bold">{user?.name}</span> is logged in
         </p>

@@ -68,7 +68,7 @@ function InventoryItems() {
 
   return (
     <div className="bg-darkgreen grid ">
-      <ul className="grid grid-cols-6 gap-3 p-2">
+      <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:lg:grid-cols-6 gap-3 p-2">
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center text-center w-max">
             <h1 className="page-title-txt">

@@ -17,13 +17,13 @@ function InventoryHeading() {
       <div className="flex items-center gap-2">
         <button
           onClick={() => clearEarnings()}
-          className="bg-red text-white px-3 py-1 rounded-md hover:bg-darkred"
+          className="bg-red text-white text-sm p-1 rounded-md hover:bg-darkred md:px-3 py-2"
         >
           Clear Earnings
         </button>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
+          className="bg-blue text-white text-sm p-1 rounded-md hover:bg-sky-700 md:px-3 py-2"
         >
           Add Item
         </button>
