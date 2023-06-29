@@ -10,6 +10,7 @@ function AddItemForm({ onClose }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [error, setError] = useState(false);
 
   const fileInputRef = useRef(null);
 
@@ -19,22 +20,28 @@ function AddItemForm({ onClose }) {
   itemObject.append("price", price);
   itemObject.append("quantity", quantity);
   const addItem = (e) => {
-    setLoading(true);
     e.preventDefault();
-    itemService
-      .createItem(itemObject)
-      .then((res) => {
-        setItems(items.concat(res));
-        setName("");
-        setPrice("");
-        setQuantity("");
-        fileInputRef.current.value = null;
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        onClose();
-        setLoading(false);
-      });
+
+    if (name.length <= 2) {
+      setError(true);
+      return;
+    } else {
+      setLoading(true);
+      itemService
+        .createItem(itemObject)
+        .then((res) => {
+          setItems(items.concat(res));
+          setName("");
+          setPrice("");
+          setQuantity("");
+          fileInputRef.current.value = null;
+        })
+        .catch((error) => console.log(error))
+        .finally(() => {
+          onClose();
+          setLoading(false);
+        });
+    }
   };
 
   if (loading) {
@@ -76,6 +83,11 @@ function AddItemForm({ onClose }) {
       <button className="bg-secondary hover:bg-green" type="submit">
         Add New Item
       </button>
+      {error && (
+        <p className="error-message text-orange-600">
+          Item name must be at least 3 characters long.
+        </p>
+      )}
     </form>
   );
 }

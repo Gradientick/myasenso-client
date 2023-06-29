@@ -14,28 +14,48 @@ function setToken(newToken) {
 }
 
 async function getItems() {
-  const response = await apiClient.get("/items");
-  return response.data;
+  try {
+    const response = await apiClient.get("/items");
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch items");
+  }
 }
 
 async function getItem(id) {
-  const response = await apiClient.get(`/items/${id}`);
-  return response.data;
+  try {
+    const response = await apiClient.get(`/items/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch item");
+  }
 }
 
 async function createItem(item) {
-  const response = await apiClient.post("/items", item);
-  return response.data;
+  try {
+    const response = await apiClient.post("/items", item);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to create item");
+  }
 }
 
 async function updateItem(id, item) {
-  const response = await apiClient.put(`/items/${id}`, item);
-  return response.data;
+  try {
+    const response = await apiClient.put(`/items/${id}`, item);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update item");
+  }
 }
 
 async function deleteItem(id) {
-  const response = await apiClient.delete(`/items/${id}`);
-  return response.status;
+  try {
+    const response = await apiClient.delete(`/items/${id}`);
+    return response.status;
+  } catch (error) {
+    throw new Error("Failed to delete item");
+  }
 }
 
 export default {

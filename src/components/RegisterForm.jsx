@@ -11,16 +11,20 @@ function RegisterForm({ onFormSwitch }) {
   const [number, setNumber] = useState("");
   const [title, setTitle] = useState("");
   const { loading, setLoading } = useContext(LoadingContext);
+  const [error, setError] = useState(false);
 
   const handleRegister = (e) => {
-    setLoading(true);
     e.preventDefault();
     registerService
       .register({ email, password, name, number, title })
-      .then((res) => console.log(res))
-      .then(() => setLoading(false));
-    onFormSwitch("login").catch((err) => console.log(err));
-    // onFormSwitch("login");
+      .then((res) => {
+        setLoading(true);
+        console.log(res);
+        setLoading(false);
+        onFormSwitch("login");
+      })
+      .catch((error) => setError(true));
+
     // setEmail("");
     // setPassword("");
     // setName("");
@@ -80,7 +84,9 @@ function RegisterForm({ onFormSwitch }) {
       <button className="login-button" type="submit">
         Create Account
       </button>
-      {/* <p className="forgot-password">Forgot password?</p> */}
+      {error && (
+        <p className="error-message text-orange-600">Email already exists</p>
+      )}
       <p>
         Already have an account?{" "}
         <span className="create-account" onClick={() => onFormSwitch("login")}>

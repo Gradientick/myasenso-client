@@ -11,6 +11,7 @@ import TitleContext from "../features/TitleContext";
 function LoginForm({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const { setTitle } = useContext(TitleContext);
   const { loading, setLoading } = useContext(LoadingContext);
@@ -32,7 +33,7 @@ function LoginForm({ onFormSwitch }) {
         setTitle(res.title);
         setPassword("");
       })
-      .catch((error) => console.log(error))
+      .catch((error) => setErr(true))
       .finally(() => setLoading(false));
   };
 
@@ -68,6 +69,11 @@ function LoginForm({ onFormSwitch }) {
         <button type="submit" className="login-button">
           Sign In
         </button>
+        {err && (
+          <p className="error-message text-orange-600">
+            Invalid email or password
+          </p>
+        )}
       </form>
       <p>
         Don't have an account?{" "}
