@@ -12,7 +12,6 @@ import PriceContext from "./features/PriceContext";
 import UserContext from "./features/UserContext";
 import LoadingContext from "./features/LoadingContext";
 import itemService from "./services/itemService";
-import LoadingSpinner from "./loadingComponents/LoadingSpinner";
 
 export default function App() {
   const [items, setItems] = useState([]);

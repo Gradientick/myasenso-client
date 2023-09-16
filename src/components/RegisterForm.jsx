@@ -24,12 +24,6 @@ function RegisterForm({ onFormSwitch }) {
         onFormSwitch("login");
       })
       .catch((error) => setError(true));
-
-    // setEmail("");
-    // setPassword("");
-    // setName("");
-    // setNumber("");
-    // setTitle("");
   };
 
   if (loading) {

@@ -28,12 +28,6 @@ function InventoryHeading() {
           Add Item
         </button>
       </div>
-      {/* <button
-        onClick={() => setShowSell(true)}
-        className="bg-blue text-white px-3 py-1 rounded-md hover:bg-sky-700"
-      >
-        Sell Item
-      </button> */}
       <AddItemModal visible={showModal} onClose={handleOnClose} />
     </div>
   );

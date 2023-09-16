@@ -10,8 +10,6 @@ function InventoryItems() {
   const { setPrice } = useContext(PriceContext);
   const { loading, setLoading } = useContext(LoadingContext);
 
-  // // let newNumber = 0;
-
   useEffect(() => {
     itemService
       .getItems()
@@ -34,7 +32,6 @@ function InventoryItems() {
     const newQuantity = item.quantity - 1;
     const itemObject = { quantity: newQuantity };
     let currentQuantity = itemObject.quantity;
-    // let itemPrice = item.price;
     if (currentQuantity <= 0) {
       deleteItem(id);
       return;
